@@ -127,6 +127,13 @@ public class HMACTokenValidatorHandler extends AbstractHandler {
         }
         return false;
     }
+    
+    public boolean mediate(MessageContext messageContext) {
+        if (messageContext.isResponse()) {
+            return handleResponse(messageContext);
+        }
+        return handleRequest(messageContext);
+    }
 
     public boolean handleResponse(MessageContext messageContext) {
         return true;
