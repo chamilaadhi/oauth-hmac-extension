@@ -33,17 +33,17 @@
         <dependency>
             <groupId>org.wso2.carbon.identity.inbound.auth.oauth2</groupId>
             <artifactId>org.wso2.carbon.identity.oauth.common</artifactId>
-            <version>5.3.4</version>
+            <version>6.0.53</version>
         </dependency>
         <dependency>
             <groupId>org.apache.synapse</groupId>
             <artifactId>synapse-core</artifactId>
-            <version>2.1.7-wso2v7</version>
+            <version>2.1.7-wso2v80</version>
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon.apimgt</groupId>
             <artifactId>org.wso2.carbon.apimgt.gateway</artifactId>
-            <version>6.1.66</version>
+            <version>6.4.50</version>
         </dependency>
     </dependencies>
     <repositories>

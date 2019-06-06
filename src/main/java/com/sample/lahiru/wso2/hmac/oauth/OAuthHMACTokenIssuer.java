@@ -36,6 +36,8 @@ public class OAuthHMACTokenIssuer implements OauthTokenIssuer {
     private OAuthIssuer oAuthIssuerImpl = OAuthServerConfiguration.getInstance()
             .getOAuthTokenGenerator();
 
+    private boolean persistAccessTokenAlias = true;
+
     public String accessToken(OAuthTokenReqMessageContext tokReqMsgCtx) throws OAuthSystemException {
 
         return getHMACAccessToken(oAuthIssuerImpl.accessToken(), tokReqMsgCtx.getValidityPeriod());
@@ -60,7 +62,7 @@ public class OAuthHMACTokenIssuer implements OauthTokenIssuer {
     private String getHMACAccessToken(String accessToken, long validityPeriod) throws OAuthSystemException {
 
         String hmacAccessToken;
-        String tokenExpirationTime = String.format("%016x", System.currentTimeMillis() + validityPeriod);
+        String tokenExpirationTime = String.format("%016x", System.currentTimeMillis() + validityPeriod * 1000);
 
         hmacAccessToken = accessToken + '.' + tokenExpirationTime;
 
@@ -83,5 +85,16 @@ public class OAuthHMACTokenIssuer implements OauthTokenIssuer {
         }
 
         return hmacAccessToken;
+    }
+
+    @Override
+    public void setPersistAccessTokenAlias(boolean persistAccessTokenAlias) {
+        this.persistAccessTokenAlias = persistAccessTokenAlias;
+
+    }
+
+    @Override
+    public boolean usePersistedAccessTokenAlias() {
+        return persistAccessTokenAlias;
     }
 }
